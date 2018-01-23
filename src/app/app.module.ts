@@ -2,14 +2,31 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
-
+import { LandingPage } from '../pages/landing/landing';
 import { AboutPage } from '../pages/about/about';
+import { ConsumptionMonitorPage } from '../pages/consumption-monitor/consumption-monitor';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
-
+import {AngularFireModule} from 'angularfire2';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+
+import { HttpClientModule } from '@angular/common/http';
+//import { AppComponent } from 'app.component';
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAUX4lqoGePA8RuW58GRMSpiCoLGlV6ONg",
+    authDomain: "mamaison-15a79.firebaseapp.com",
+    databaseURL: "https://mamaison-15a79.firebaseio.com",
+    projectId: "mamaison-15a79",
+    storageBucket: "mamaison-15a79.appspot.com",
+    messagingSenderId: "136130538145"
+  };
+
+
 
 @NgModule({
   declarations: [
@@ -17,11 +34,16 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
+    LandingPage,
+    ConsumptionMonitorPage,
     TabsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+     AngularFireModule.initializeApp(firebaseConfig),
+     AngularFireAuthModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -29,7 +51,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    ConsumptionMonitorPage,
+    LandingPage
   ],
   providers: [
     StatusBar,

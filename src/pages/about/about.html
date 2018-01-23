@@ -1,11 +1,73 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+    <ion-title>Control center</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
 
+<ion-list>
+
+  <ion-card>
+    <ion-item>
+      <h2>Appliance 1</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle [(ngModel)]="off"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+          last powered: 11h
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+
+<ion-card>
+    <ion-item>
+      <h2>Appliance 2</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle  [(ngModel)]="test" ></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+          last powered: 5h
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+   <ion-card>
+    <ion-item>
+      <h2>Appliance 3</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle [(ngModel)]="On"></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+          last powered: 1h
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+</ion-list>
+ <ion-fab right bottom>
+        <button ion-fab mini><ion-icon name="add"></ion-icon></button>
+      </ion-fab>
 </ion-content>

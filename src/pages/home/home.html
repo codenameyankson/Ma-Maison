@@ -4,14 +4,119 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+<ion-content>
+<div id="slider">
+  <ion-slides autoplay="3000" loop="true" speed="5500">
+  
+    <ion-slide>
+        <ion-card class=card style ="text-align: center; height: 240px;">
+          <ion-card-header>
+            Power Reading
+          </ion-card-header>
+          <ion-item style ="text-align: center">
+            <h1  style =" margin: 0 0 2px;font-size: 7.0rem;font-weight: 900;"> {{reading}} Kwh </h1>
+          </ion-item>
+        </ion-card>
+    </ion-slide>
+   
+    <ion-slide >
+      <ion-card class="graph"> 
+      <ion-card-header>
+        Today's Consumption
+      </ion-card-header>
+      <ion-card-content>
+        <canvas  #lineCanva></canvas>
+      </ion-card-content>
+      </ion-card>
+    </ion-slide>
+
+    
+  </ion-slides>
+</div>
+
+<div class = "stackArea" style ="text-align: center">
+ 
+  <ion-card class="stack">
+    <ion-item>
+      <h2> Main  Supply</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        //<ion-label>Status</ion-label>
+        <ion-toggle  [(ngModel)]="test" ></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+         
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  
+  <ion-card class="stack">
+    <ion-item>
+      <h2>Outside Lighting</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle  [(ngModel)]="test2" ></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+          last powered: 8h
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-card class="stack">
+    <ion-item>
+      <h2>Security Fence</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle  [(ngModel)]="test0" ></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+          last powered: 8h
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+<ion-card class="stack">
+    <ion-item>
+      <h2>Inside Lighting</h2>
+    </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Status</ion-label>
+        <ion-toggle  [(ngModel)]="test9" ></ion-toggle>
+      </ion-item>
+    </ion-card-content>
+    <ion-row>
+      <ion-col center text-right>
+        <ion-note>
+         
+        </ion-note>
+      </ion-col>
+    </ion-row>
+</ion-card>
+
+
+
+</div>
+
+  
 </ion-content>
+
+ 
