@@ -11,23 +11,52 @@ export class AboutPage {
   test: boolean = false;
 
   constructor(public navCtrl: NavController, private http: HttpClient) {
-    let client = mqtt.connect({port:14336,host:'m14.cloudmqtt.com',username:'ywprfblm',password:'MBfWngfGx1-g'})
-
+    console.log("IN constructor")
+    let client = mqtt.connect({port:8080,host:'test.mosquitto.org',username:'',password:''})
+    
     client.on('connect', function () {
-      client.subscribe('lighting')
-      client.publish('lighting', 'Hello mqtt')
+      client.subscribe('light')
+      client.publish('light', 'Connected and Ready')
     })
 
     client.on('message', function (topic, message) {
 
-      console.log(message.toString())
-      client.end()
+      console.log(message.toString( ))
+      //client.end()
     })
-
+    
+    this.on("relay1")
+    this.off("relay1")
+ 
   }
-
+  
   changeTest() {
     this.test = !this.test;
   }
+   
+   //this method is for switching on relays
+  on(id){
+    let client = mqtt.connect({port:8080,host:'test.mosquitto.org',username:'',password:''})
+    
+    client.on('connect', function () {
+   
+      client.publish(id, 'on') 
+    })
+
+  }
+  //  //this method is for switching on relays
+  off(id){
+      let client = mqtt.connect({port:8080,host:'test.mosquitto.org',username:'',password:''})
+          
+          client.on('connect', function () {
+        
+            client.publish(id, 'off') 
+          })
+
+  
+
+  }
+
+  
 
 }

@@ -21,6 +21,8 @@ export class ConsumptionMonitorPage {
  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+      console.log("in co")
   }
 
   ionViewDidLoad() {
