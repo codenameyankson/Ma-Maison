@@ -10,8 +10,8 @@ import { LandingPage } from '../pages/landing/landing';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  //rootPage:any = LandingPage;
-  rootPage:any = TabsPage;
+  rootPage:any = LandingPage;
+  //rootPage:any = TabsPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
     platform.ready().then(() => {

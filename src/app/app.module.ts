@@ -12,8 +12,11 @@ import {AngularFireModule} from 'angularfire2';
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireDatabase} from 'angularfire2/database';
 
 import { HttpClientModule } from '@angular/common/http';
+import { FirebaseServiceProvider } from '../providers/firebase-service/firebase-service';
 //import { AppComponent } from 'app.component';
 
 
@@ -42,6 +45,7 @@ const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
      AngularFireModule.initializeApp(firebaseConfig),
+     AngularFireDatabaseModule,
      AngularFireAuthModule,
     HttpClientModule
   ],
@@ -58,7 +62,8 @@ const firebaseConfig = {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FirebaseServiceProvider 
   ]
 })
 export class AppModule {}

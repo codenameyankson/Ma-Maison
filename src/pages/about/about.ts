@@ -30,11 +30,8 @@ export class AboutPage {
  
   }
   
-  changeTest() {
-    this.test = !this.test;
-  }
-   
-   //this method is for switching on relays
+ 
+  // this method is for switching on relays
   on(id){
     let client = mqtt.connect({port:8080,host:'test.mosquitto.org',username:'',password:''})
     
@@ -44,6 +41,7 @@ export class AboutPage {
     })
 
   }
+  
   //  //this method is for switching on relays
   off(id){
       let client = mqtt.connect({port:8080,host:'test.mosquitto.org',username:'',password:''})
@@ -52,11 +50,6 @@ export class AboutPage {
         
             client.publish(id, 'off') 
           })
-
-  
-
-  }
-
-  
+        }
 
 }

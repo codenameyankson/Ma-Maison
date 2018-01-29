@@ -1,14 +1,17 @@
 import { Component, ViewChild} from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
-
-
+import {storage, initializeApp} from 'firebase';
+import {AngularFireDatabase } from 'angularfire2/database'
+import {FirebaseServiceProvider} from "../../providers/firebase-service/firebase-service";
+import { TotalConsumption } from '../../modules/totalConsumption';
 
 @IonicPage()
 @Component({
   selector: 'page-consumption-monitor',
   templateUrl: 'consumption-monitor.html',
 })
+
 export class ConsumptionMonitorPage {
   @ViewChild('barCanvas') barCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;
@@ -17,13 +20,30 @@ export class ConsumptionMonitorPage {
     barChart: any;
     doughnutChart: any;
     lineChart: any;
-   
+    ttConsumption = {} as TotalConsumption;
  
+  
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
+  
+     this.addReport();
 
-      console.log("in co")
   }
+addReport(){ 
+ this.firebaseService.addReport(
+     {
+    "Consumption":"2539",
+    "Time taken":"19:30",
+    "Date": "29/01/2018"
+     
+     //"Consumption": this.ttConsumption.Consumption,
+    //"Time":this.ttConsumption.Time,
+   //"Date": this.ttConsumption.Date
+  
+   }
+  );
+}
+
 
   ionViewDidLoad() {
   
