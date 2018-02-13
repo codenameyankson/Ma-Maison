@@ -10,7 +10,12 @@ export class HomePage {
  @ViewChild('lineCanva') lineCanva;
   lineChart: any;
   reading = 2568;
-  
+  t1 = 'Main Supply';
+  t2 = 'Outside Lighting';
+  t3 = 'Security Fence';
+  t4 = 'Inside Lighting';
+  data =  [65, 59, 80, 81, 56, 55, 40];
+
   constructor(public navCtrl: NavController,public navParams: NavParams) {
 
   }
@@ -41,7 +46,7 @@ export class HomePage {
                         pointHoverBorderWidth: 2,
                         pointRadius: 1,
                         pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
+                        data: this.data,
                         spanGaps: false,
                     }
                 ]
