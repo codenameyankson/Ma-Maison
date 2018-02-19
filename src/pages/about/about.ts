@@ -19,7 +19,7 @@ export class AboutPage {
     console.log(client);
     
     client.on('connect', function () {
-          console.log(" lflflfl INside")
+          console.log("INside")
       client.subscribe('light')
       client.publish('light', 'Connected and Ready')
     })
