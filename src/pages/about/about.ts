@@ -2,7 +2,7 @@ import { Component, OnInit} from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 
-//import * as mqtt from 'mqtt';
+import * as mqtt from 'mqtt';
 
 
 declare var Paho: any;
@@ -28,37 +28,30 @@ host="broker.hivemq.com"; //change this
 
   constructor(public navCtrl: NavController) {
     console.log("INside  the  constructor")
-this.MQTTconnect() ;
-//     let client = mqtt.connect({port:8080,host:"test.mosquitto.org",username:"",
-//     password:"",onSuccess:function () 
-//     { console.log("in callback")
-//       client.subscribe('light')
-//       client.publish('light','Connected and Ready')
-//     }
-// })
+//this.MQTTconnect() ;
+    let client = mqtt.connect({port:8080,host:"test.mosquitto.org",username:"",
+    password:"",onSuccess:function () 
+    { console.log("in callback")
+      client.subscribe('light')
+      client.publish('light','Connected and Ready')
+    }
+})
 
-    //console.log(client);
-
-  //  let client = mqtt.connect('wss://test.mosquitto.org:8080');
-  //  let client = mqtt.connect({port:8080, host:"test.mosquitto.org",username:"",password:""});
-    
-  // let client = mqtt.connect({ port:8080,host:'test.mosquitto.org',username:'',password:''})
-
-   // let client = mqtt.connect({port:34336,host:'m14.cloudmqtt.com',username:'ywprfblm',password:'psDKcDi9TwjX'})
+    console.log(client);
 
     
   
-    // client.onSuccess('connect', function () {
-    //   console.log("in callback")
-    //   client.subscribe('light')
-    //   client.publish('light','Connected and Ready')
-    // })
+    client.on('connect', function () {
+      console.log("in callback")
+      client.subscribe('light')
+      client.publish('light','Connected and Ready')
+    })
  
-    // client.on('message', function (topic, message) {
-    //   console.log("empty message");
-    //   console.log(message.toString())
-    //   client.end()
-    // })
+    client.on('message', function (topic, message) {
+      console.log("message recieved")
+      console.log(message.toString())
+      client.end()
+    })
 
     //this.on("relay1")
     // this.off("relay1")
@@ -69,45 +62,45 @@ this.MQTTconnect() ;
 
 
 
- onFailure(message) {
-console.log("Connection Attempt to Host "+this.host+"Failed");
-setTimeout(this.MQTTconnect, this.reconnectTimeout);
-        }
+//  onFailure(message) {
+// console.log("Connection Attempt to Host "+this.host+"Failed");
+// setTimeout(this.MQTTconnect, this.reconnectTimeout);
+//         }
 
- onMessageArrived(msg){
-let out_msg="Message received "+msg.payloadString+"<br>";
-out_msg=out_msg+"Message received Topic -->"+msg.destinationName;
-console.log(out_msg);
+//  onMessageArrived(msg){
+// let out_msg="Message received "+msg.payloadString+"<br>";
+// out_msg=out_msg+"Message received Topic -->"+msg.destinationName;
+// console.log(out_msg);
 
-}
- onConnect() {
- // Once a connection has been made, make a subscription and send a message.
-console.log("Connected ");
-this.mqtt.subscribe("sensor/nathan/#");
-let message = new Paho.MQTT.Message("Hello World version 3");
-message.destinationName = "sensor/nathan/1";
-this.mqtt.send(message);
-console.log(message);
- }
-  MQTTconnect() {
-//    var connectionOptions = {
-// userName:"",
-// password:"",
-// hosts:["test.mosquitto.org"],
-// port:[8000]
 // }
-console.log("connecting to "+ this.host +" "+ this.port);
-this.mqtt = new Paho.MQTT.Client(this.host,this.port, "clinetjs");
-//document.write("connecting to "+ host);
-var options = {
-timeout: 3,
-onSuccess: this.onConnect,
-onFailure: this.onFailure,
-};
-this.mqtt.onMessageArrived = this.onMessageArrived
-this.mqtt.connect(options); //connect
-console.log(this.mqtt);
-}
+//  onConnect() {
+//  // Once a connection has been made, make a subscription and send a message.
+// console.log("Connected ");
+// this.mqtt.subscribe("sensor/nathan/#");
+// let message = new Paho.MQTT.Message("Hello World version 3");
+// message.destinationName = "sensor/nathan/1";
+// this.mqtt.send(message);
+// console.log(message);
+//  }
+//   MQTTconnect() {
+// //    var connectionOptions = {
+// // userName:"",
+// // password:"",
+// // hosts:["test.mosquitto.org"],
+// // port:[8000]
+// // }
+// console.log("connecting to "+ this.host +" "+ this.port);
+// this.mqtt = new Paho.MQTT.Client(this.host,this.port, "clinetjs");
+// //document.write("connecting to "+ host);
+// var options = {
+// timeout: 3,
+// onSuccess: this.onConnect,
+// onFailure: this.onFailure,
+// };
+// this.mqtt.onMessageArrived = this.onMessageArrived
+// this.mqtt.connect(options); //connect
+// console.log(this.mqtt);
+// }
  
 // ngOnInit():void{
 //  //let client = mqtt.connect({ port:8080,host:'test.mosquitto.org',username:'',password:''})
