@@ -18,10 +18,11 @@ export class ConsumptionMonitorPage {
     @ViewChild('lineCanvas') lineCanvas;
  
     barChart: any;
-    doughnutChart: any;
     lineChart: any;
+    doughnutChart: any;
+    
     ttConsumption = {} as TotalConsumption;
- 
+    data =  [65, 59, 80, 81, 56, 55, 40];
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
@@ -46,16 +47,47 @@ addReport(){
 
 
   ionViewDidLoad() {
-  
+  this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+ 
+            type: 'line',
+            data: {
+                labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
+                datasets: [
+                    {
+                        label: "Electricity Consumed",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192,0.4)",
+                        borderColor: "rgba(75,192,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: this.data,
+                        spanGaps: false,
+                    }
+                ]
+            }
+ 
+        });
 
     this.barChart = new Chart(this.barCanvas.nativeElement, {
  
             type: 'bar',
             data: {
-                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "June","July"],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
+                    label: 'Monthly Cosumption',
+                    data: this.data,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
@@ -86,13 +118,14 @@ addReport(){
             }
  
         });
+
         this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
  
             type: 'doughnut',
             data: {
                 labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
                 datasets: [{
-                    label: '# of Votes',
+                    label: 'Appliance Contribution to total consumption',
                     data: [12, 19, 3, 5, 2, 3],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -115,39 +148,7 @@ addReport(){
  
         });
  
-        this.lineChart = new Chart(this.lineCanvas.nativeElement, {
- 
-            type: 'line',
-            data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July"],
-                datasets: [
-                    {
-                        label: "My First dataset",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: [65, 59, 80, 81, 56, 55, 40],
-                        spanGaps: false,
-                    }
-                ]
-            }
- 
-        });
- 
+         
      console.log('ionViewDidLoad ConsumptionMonitorPage');
   
   }

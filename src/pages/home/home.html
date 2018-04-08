@@ -42,8 +42,8 @@
     </ion-item>
     <ion-card-content>
       <ion-item>
-        //<ion-label>Status</ion-label>
-        <ion-toggle  [(ngModel)]="test" ></ion-toggle>
+       <ion-label>Status</ion-label>
+      <ion-toggle class="lamp" [(ngModel)]="lamp" (ionChange)="lampTrigger(lamp)" ></ion-toggle>
       </ion-item>
     </ion-card-content>
     <ion-row>
@@ -61,14 +61,14 @@
     </ion-item>
     <ion-card-content>
       <ion-item>
-        <ion-label>Status</ion-label>
-        <ion-toggle  [(ngModel)]="test2" ></ion-toggle>
+      <ion-label>Status</ion-label>
+         <ion-toggle name="switch1" [(ngModel)]="switch1" (ionChange)="switch1Trigger(switch1)" ></ion-toggle>
       </ion-item>
     </ion-card-content>
     <ion-row>
       <ion-col center text-right>
         <ion-note>
-          last powered: 8h
+          
         </ion-note>
       </ion-col>
     </ion-row>
@@ -81,14 +81,14 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Status</ion-label>
-        <ion-toggle  [(ngModel)]="test0" ></ion-toggle>
+        <ion-toggle name="switch2" [(ngModel)]="switch2" (ionChange)="switch2Trigger(switch2)" ></ion-toggle>
       </ion-item>
     </ion-card-content>
     <ion-row>
       <ion-col center text-right>
         <ion-note>
-          last powered: 8h
-        </ion-note>
+       
+        </ion-note> 
       </ion-col>
     </ion-row>
   </ion-card>
@@ -100,13 +100,13 @@
     <ion-card-content>
       <ion-item>
         <ion-label>Status</ion-label>
-        <ion-toggle  [(ngModel)]="test9" ></ion-toggle>
+        <ion-toggle name="mains" [(ngModel)]="mains" (ionChange)="mainsTrigger(mains)" ></ion-toggle>
       </ion-item>
     </ion-card-content>
     <ion-row>
       <ion-col center text-right>
         <ion-note>
-         
+          
         </ion-note>
       </ion-col>
     </ion-row>
