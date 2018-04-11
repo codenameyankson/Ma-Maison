@@ -59,11 +59,11 @@ mqtt;
  
    if(this.lamp ==true){
     console.log("lamp on");
-     client.publish('King/MaMaison/light','ON');
+     client.publish('King/MaMaison/light/event','ON');
      
    }else{
       console.log("lamp off ");
-       client.publish('King/MaMaison/light','OFF');
+       client.publish('King/MaMaison/light/event','OFF');
        
    }
  }
@@ -74,11 +74,11 @@ mqtt;
  
    if(this.switch1 ==true){
     console.log("Switch1 is on");
-     client.publish('King/MaMaison/switch1','ON');
+     client.publish('King/MaMaison/switch1/event','ON');
      
    }else{
       console.log("Switch1 off ");
-       client.publish('King/MaMaison/switch1','OFF');
+       client.publish('King/MaMaison/switch1/event','OFF');
        
    }
  }
@@ -89,11 +89,11 @@ mqtt;
  
    if(this.switch2 ==true){
     console.log("Switch2 is on");
-     client.publish('King/MaMaison/switch2','ON');
+     client.publish('King/MaMaison/switch2/event','ON');
      
    }else{
       console.log("switch2 off ");
-       client.publish('King/MaMaison/switch2','OFF');
+       client.publish('King/MaMaison/switch2/event','OFF');
        
    }
  }

@@ -1,4 +1,5 @@
 import { Component, ViewChild} from '@angular/core';
+import {Http, Response } from '@angular/http';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Chart } from 'chart.js';
 import {storage, initializeApp} from 'firebase';
@@ -16,18 +17,22 @@ export class ConsumptionMonitorPage {
   @ViewChild('barCanvas') barCanvas;
     @ViewChild('doughnutCanvas') doughnutCanvas;
     @ViewChild('lineCanvas') lineCanvas;
- 
+    numbers:string[][];
     barChart: any;
     lineChart: any;
     doughnutChart: any;
-    
+    result:any;
+    times:any;
     ttConsumption = {} as TotalConsumption;
-    data =  [65, 59, 80, 81, 56, 55, 40];
-  
+    dates:any;
+    data:any;
+    //data =  [800, 650, 590, 700, 589, 545, 840];
+    labels = ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public firebaseService: FirebaseServiceProvider,public http: Http) {
   
-     this.addReport();
+    // this.addReport();
+    this.getdata();
 
   }
 addReport(){ 
@@ -46,39 +51,10 @@ addReport(){
 }
 
 
+
+
   ionViewDidLoad() {
-  this.lineChart = new Chart(this.lineCanvas.nativeElement, {
- 
-            type: 'line',
-            data: {
-                labels: ["12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00"],
-                datasets: [
-                    {
-                        label: "Electricity Consumed",
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: "rgba(75,192,192,1)",
-                        pointBackgroundColor: "#fff",
-                        pointBorderWidth: 1,
-                        pointHoverRadius: 5,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
-                        pointHoverBorderColor: "rgba(220,220,220,1)",
-                        pointHoverBorderWidth: 2,
-                        pointRadius: 1,
-                        pointHitRadius: 10,
-                        data: this.data,
-                        spanGaps: false,
-                    }
-                ]
-            }
- 
-        });
+    
 
     this.barChart = new Chart(this.barCanvas.nativeElement, {
  
@@ -152,5 +128,61 @@ addReport(){
      console.log('ionViewDidLoad ConsumptionMonitorPage');
   
   }
+
+
+getdata(){
+
+let url = "http://localhost/phpMQTT/phpServerSide/ionicDbloader.php?action=query";
+
+    
+   this.http.get(url).map((res:Response) => res.json()).subscribe(data => {
+   
+    this.times=data[0][0];
+    this.dates=data[0][1];
+    this.data =data[0][2];
+    console.log(this.data);
+
+    this.lineChart = new Chart(this.lineCanvas.nativeElement, {
+ 
+            type: 'line',
+            data: {
+                labels: this.times,
+                datasets: [
+                    {
+                        label: "Electricity Consumed",
+                        fill: false,
+                        lineTension: 0.1,
+                        backgroundColor: "rgba(75,192,192,0.4)",
+                        borderColor: "rgba(75,192,192,1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        borderJoinStyle: 'miter',
+                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBackgroundColor: "#fff",
+                        pointBorderWidth: 1,
+                        pointHoverRadius: 5,
+                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBorderColor: "rgba(220,220,220,1)",
+                        pointHoverBorderWidth: 2,
+                        pointRadius: 1,
+                        pointHitRadius: 10,
+                        data: this.data,
+                        spanGaps: false,
+                    }
+                ]
+            }
+ 
+        });
+  },
+    err => {
+      console.log(err);
+     
+    }); 
+
+
+}
+
+
 
 }
