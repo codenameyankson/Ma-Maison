@@ -1,17 +1,35 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Threshold Monitor
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
+
     <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+        <ion-label>Period:</ion-label>
+        <ion-select [(ngModel)]="period">
+          <ion-option value="Monthly">Monthly</ion-option>
+          <ion-option value="Weekly">Weekly</ion-option>
+        </ion-select>
+      </ion-item>
+    
+ 
+      <ion-item>
+        <ion-label>Limit: </ion-label>
+        <ion-input type="text" [(ngModel)]="threshold"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Phone Number: </ion-label>
+        <ion-input type="text" [(ngModel)]="phone"></ion-input>
+      </ion-item>
+     
+     <div align=center padding=15%>
+       
+      <button ion-button round outline center>Set Threshold</button>
+     </div>
+
 </ion-content>

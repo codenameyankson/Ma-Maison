@@ -1,0 +1,30 @@
+<!--
+  Generated template for the ApplianceInfoPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+<ion-navbar>
+    
+    <ion-title>
+      Appliance Info
+    </ion-title>
+
+    <ion-buttons start>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  
+
+</ion-header>
+
+
+<ion-content padding>
+
+<p>The url obtained is {{applianceUrl}}</p>
+
+ <canvas #lineCanvas></canvas>
+</ion-content>

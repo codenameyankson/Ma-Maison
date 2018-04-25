@@ -1,6 +1,8 @@
 import { Component, OnInit} from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, ModalController, Events} from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+
+
 
 import * as mqtt from 'mqtt';
 
@@ -17,12 +19,16 @@ port:[8000]
   templateUrl: 'about.html'
 })
 export class AboutPage   {
+
   public name:String; 
 public lamp:boolean; public switch1:boolean; public switch2 :boolean;
 mqtt;
 
+//Open modal ref
+modalRef:any //Holds a reference to the opened modal;
 
-  constructor(public navCtrl: NavController) {
+
+  constructor(public navCtrl: NavController, private applianceModal:ModalController, public event:Events) {
     
     var options = {
 
@@ -53,6 +59,16 @@ port:8080
     })
 
 
+  }
+
+
+  //Angular OnInit
+  ngOnInit(){
+
+    //Event for closing the modal;
+    this.event.subscribe("ApplianceInfoPage:CloseModal",()=>{
+      this.closeModal();
+    });
   }
 
      
@@ -100,6 +116,20 @@ port:8080
    }
  }
 
+
+//Open the modal and pass options to it.
+openModal(url){
+
+  // var url  = "www.something.com";
+  this.modalRef = this.applianceModal.create("ApplianceInfoPage",{urlData : url});
+
+  this.modalRef.present();
+}
+
+//Closes the modal
+closeModal(){
+  this.modalRef.dismiss();
+}
 
 
 

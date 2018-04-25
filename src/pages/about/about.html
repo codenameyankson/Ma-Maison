@@ -7,7 +7,7 @@
 <ion-content padding>
 
 <ion-list>
-  <ion-card>
+  <ion-card (click)="openModal('LampUrl')">
     <ion-item>
       <h2>Lamp</h2>
     </ion-item>
@@ -27,7 +27,7 @@
   </ion-card>
 
 
-<ion-card>
+<ion-card (click)="openModal('Switch1Url')">
     <ion-item>
       <h2>Switch 1</h2>
     </ion-item>
@@ -46,7 +46,7 @@
     </ion-row>
   </ion-card>
 
-   <ion-card>
+   <ion-card (click)="openModal('Switch2Url')">
     <ion-item>
       <h2>Switch 2</h2>
     </ion-item>
